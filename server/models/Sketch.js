@@ -3,11 +3,9 @@ const mongoose = require("mongoose");
 const sketchSchema = new mongoose.Schema({
     sketch_name: {
         type: String,
-        max: 255,
-        min: 6,
     },
-    sketch_image: {
-        type: Blob,
+    sketch_Url: {
+        type: String,
         required: true,
     },
     sketch_status: {

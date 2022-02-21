@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true,
         max: 255,
@@ -21,10 +21,25 @@ const userSchema = new mongoose.Schema({
         required: true,
         max: 255,
         min: 6,
+        match: [
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+            "Password must contain minimum eight characters includig uppercase & lowercase letter and number."
+        ],
+    },
+    profile_pic_URL: {
+        type: String ,
     },
     date: {
         type: Date,
         default: Date.now,
+    },
+    sketch_ids: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Sketch'
+    },
+    post_ids:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
     },
 });
 
