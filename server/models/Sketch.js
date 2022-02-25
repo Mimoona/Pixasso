@@ -6,11 +6,11 @@ const sketchSchema = new mongoose.Schema({
     },
     sketch_Url: {
         type: String,
-        required: true,
+      
     },
     sketch_status: {
         type: Boolean,
-        required: true,
+        
     },
     date: {
         type: Date,
