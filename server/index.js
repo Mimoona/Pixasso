@@ -8,6 +8,7 @@ const path = require('path');
 // give absolute path of .env 
 require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 
+
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const sketchRouter = require("./routes/sketch");
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//-------------MongoDb connection-------------
 const uri = process.env.MONGO_DB
 //console.log(process.env.MONGO_DB)
 mongoose.connect(uri, {useNewUrlParser: true}, (err) => {
@@ -29,8 +31,8 @@ mongoose.connect(uri, {useNewUrlParser: true}, (err) => {
 
 app.get("/", (req, res) => res.send("Hello World! Welcome to Pixasso..."));
 
-app.use("/auth", authRouter);
-app.use("/users", userRouter);
-app.use("/art", sketchRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
+app.use("/api/sketch", sketchRouter);
 
 app.listen(PORT, () => console.log(`server is listening on port ${PORT}`));

@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+// -----------------------------Register---------------------------- 
+
 authRouter.post("/register", async (req, res) => {
   const emailExist = await User.findOne({ email: req.body.email });
   if (emailExist) return res.status(400).send("Email already exists");
@@ -12,7 +14,7 @@ authRouter.post("/register", async (req, res) => {
   const hashPassword = await bcrypt.hash(req.body.password, salt);
 
   const user = new User({
-    username: req.body.name,
+    username: req.body.username,
     email: req.body.email,
     password: hashPassword,
   });
@@ -24,6 +26,8 @@ authRouter.post("/register", async (req, res) => {
     res.status(400).send(err);
   }
 });
+
+//----------------------------------Login--------------------------
 
 authRouter.post("/login", async (req, res) => {
     const user = await User.findOne({ email: req.body.email });

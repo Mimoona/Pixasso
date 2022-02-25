@@ -21,12 +21,12 @@ const userSchema = new mongoose.Schema({
         required: true,
         max: 255,
         min: 6,
-        match: [
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-            "Password must contain minimum eight characters includig uppercase & lowercase letter and number."
-        ],
+        // match: [
+        //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+        //     "Password must contain minimum eight characters includig uppercase & lowercase letter and number."
+        // ],
     },
-    profile_pic_URL: {
+    profile_pic_url: {
         type: String ,
     },
     date: {

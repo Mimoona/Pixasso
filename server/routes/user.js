@@ -1,7 +1,9 @@
 const express = require("express");
 const userRouter = express.Router();
 const verify = require("../middleware/verify");
+const User = require("../models/User");
 
+// ----------get all users
 userRouter.get("/", verify, async (req, res) => {
   try {
     res.json(req.user);
@@ -10,4 +12,7 @@ userRouter.get("/", verify, async (req, res) => {
   }
 });
 
+
 module.exports = userRouter;
+
+
