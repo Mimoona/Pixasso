@@ -27,7 +27,7 @@ postRouter.post('/createpost', verify,(req,res)=>{
 
 postRouter.get('/allpost',(req,res)=>{
     Post.find()
-    .populate("postedBy","_id name")
+    .populate("postedBy","_id username")
     .populate("comments.postedBy","_id name")
     .sort('date')
     .then((posts)=>{
