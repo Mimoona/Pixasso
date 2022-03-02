@@ -12,6 +12,7 @@ require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const sketchRouter = require("./routes/sketch");
+const postRouter = require("./routes/post");
 
 app.use(cors());
 app.use(express.json());
@@ -34,5 +35,6 @@ app.get("/", (req, res) => res.send("Hello World! Welcome to Pixasso..."));
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/sketch", sketchRouter);
+app.use("/api/post", postRouter);
 
 app.listen(PORT, () => console.log(`server is listening on port ${PORT}`));

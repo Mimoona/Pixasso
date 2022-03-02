@@ -29,6 +29,9 @@ const userSchema = new mongoose.Schema({
     profile_pic_url: {
         type: String ,
     },
+    biography: {
+        type: String ,
+    },
     date: {
         type: Date,
         default: Date.now,
