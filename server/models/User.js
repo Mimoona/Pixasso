@@ -36,10 +36,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    sketch_ids: {
+    sketch_ids: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Sketch'
-    },
+    }],
     post_ids:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'

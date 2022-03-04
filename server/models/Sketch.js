@@ -4,13 +4,12 @@ const sketchSchema = new mongoose.Schema({
     sketch_name: {
         type: String,
     },
-    sketch_Url: {
+    sketch_url: {
         type: String,
       
     },
     sketch_status: {
         type: Boolean,
-        
     },
     date: {
         type: Date,

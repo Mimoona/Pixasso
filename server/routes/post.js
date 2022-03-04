@@ -5,7 +5,7 @@ const Post = require("../models/Post");
 
 
 
-postRouter.post('/createpost', verify,(req,res)=>{
+postRouter.post('/create', verify,(req,res)=>{
     const {caption} = req.body 
     if(!caption){
         return  res.status(404).json({error:"Plase add all the fields"})
@@ -25,7 +25,7 @@ postRouter.post('/createpost', verify,(req,res)=>{
 })
 
 
-postRouter.get('/allpost',(req,res)=>{
+postRouter.get('/all',(req,res)=>{
     Post.find()
     .populate("postedBy","_id username")
     .populate("comments.postedBy","_id name")
@@ -37,5 +37,7 @@ postRouter.get('/allpost',(req,res)=>{
     })
     
 })
+
+
 
 module.exports = postRouter;
