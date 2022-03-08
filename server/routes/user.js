@@ -19,9 +19,6 @@ userRouter.post('/create', (req, res) => {
   .catch(err => console.log(err))
 })
 
-
-
-
 userRouter.get('/', (req, res) => {
   User
   .find()
@@ -30,13 +27,12 @@ userRouter.get('/', (req, res) => {
   .catch(err => console.log(err))
 })
 
-// userRouter.get('/:id', (req, res) => {
-//   User
-//   .findOne({_id: req.params.id})
-//   .populate('sketch_ids')
-//   .then(user => res.json(user))
-//   .catch(err => console.log(err))
-// })
+userRouter.get('/:id', (req, res) => {
+  User
+  .findOne({_id: req.params.id})
+  .then(user => res.json(user))
+  .catch(err => console.log(err))
+})
 
 userRouter.put("/:id", async (req, res) => {
   try{
@@ -45,7 +41,8 @@ userRouter.put("/:id", async (req, res) => {
       username: req.body.username, 
       email: req.body.email,
       profile_pic_url: req.body.profile_pic_url,
-      biography: req.body.biography
+      biography: req.body.biography,
+      $push: {  sketch_ids:req.body.sketch_ids }
     }
     const options = {new:true}
     const savedUser= await User.findByIdAndUpdate(id,updatedUser,options);

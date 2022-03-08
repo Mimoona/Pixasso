@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const sketchSchema = new mongoose.Schema({
     sketch_name: {
         type: String,
+        default:"art",
     },
     sketch_url: {
         type: String,
@@ -10,6 +11,7 @@ const sketchSchema = new mongoose.Schema({
     },
     sketch_status: {
         type: Boolean,
+        default: false,
     },
     date: {
         type: Date,

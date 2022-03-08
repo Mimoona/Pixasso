@@ -4,12 +4,19 @@ const Sketch = require("../models/Sketch");
 require('dotenv').config();
 
 
+sketchRouter.get('/all', (req, res) => {
+  Sketch
+  .findOne({_id: req.params.id})
+  .then(sketch => res.json(sketch))
+  .catch(err => console.log(err))
+})
+
 
 
 sketchRouter.get('/:id', (req, res) => {
   Sketch
   .findOne({_id: req.params.id})
-  .then(user => res.json(user))
+  .then(sketch => res.json(sketch))
   .catch(err => console.log(err))
 })
 

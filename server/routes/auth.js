@@ -30,7 +30,8 @@ authRouter.post("/register", async (req, res) => {
 //----------------------------------Login--------------------------
 
 authRouter.post("/login", async (req, res) => {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email })
+    .populate("sketch_ids")
     if (!user) return res.status(400).send("Email not found, please register");
 
     const validPass = await bcrypt.compare(req.body.password, user.password);
