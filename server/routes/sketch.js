@@ -6,6 +6,7 @@ require('dotenv').config();
 
 sketchRouter.post('/new', (req, res) => {
   Sketch.create(req.body)
+  
   .then(user => res.json(user))
   .catch(err => console.log(err))
 })
@@ -60,8 +61,7 @@ sketchRouter.get('/:id', (req, res) => {
 
     sketchRouter.delete('/:id', (req, res) => {
       Sketch
-      .findOne({_id: req.params.id})
-      .remove()
+      .remove({_id: req.params.id})
       .then(sketch => res.json(sketch))
       .catch(err => console.log(err))
     })

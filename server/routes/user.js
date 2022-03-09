@@ -3,28 +3,20 @@ const userRouter = express.Router();
 const verify = require("../middleware/verify");
 const User = require("../models/User");
 
-// ----------get all users
-// userRouter.get("/" async (req, res) => {
-//   try {
-//     res.json(req.user);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
-
 userRouter.post('/create', (req, res) => {
   User.create(req.body)
   .then(user => res.json(user))
   .catch(err => console.log(err))
 })
 
-userRouter.get('/', (req, res) => {
+userRouter.get('/all', (req, res) => {
   User
   .find()
   .populate("sketch_ids")
   .then(user => res.json(user))
   .catch(err => console.log(err))
 })
+
 
 userRouter.get('/:id', (req, res) => {
   User
