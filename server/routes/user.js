@@ -1,7 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
 const verify = require("../middleware/verify");
-const { update } = require("../models/User");
 const User = require("../models/User");
 
 // ----------get all users

@@ -4,18 +4,25 @@ const Sketch = require("../models/Sketch");
 require('dotenv').config();
 
 
+sketchRouter.post('/new', (req, res) => {
+  Sketch.create(req.body)
+  .then(user => res.json(user))
+  .catch(err => console.log(err))
+})
+
 sketchRouter.get('/all', (req, res) => {
   Sketch
-  .findOne({_id: req.params.id})
+  .find()
+  .populate("posted_by")
   .then(sketch => res.json(sketch))
   .catch(err => console.log(err))
 })
 
 
-
 sketchRouter.get('/:id', (req, res) => {
   Sketch
   .findOne({_id: req.params.id})
+  .populate("posted_by")
   .then(sketch => res.json(sketch))
   .catch(err => console.log(err))
 })
@@ -23,7 +30,8 @@ sketchRouter.get('/:id', (req, res) => {
   sketchRouter.post('/upload', async (req, res) => {
     try {
       const newImage = new Sketch({
-        sketch_url: req.body.sketch_url
+        sketch_url: req.body.sketch_url,
+        // posted_by: req.body.posted_by
       });
       await newImage.save();
       res.json(newImage);
@@ -39,6 +47,7 @@ sketchRouter.get('/:id', (req, res) => {
         sketch_name: req.body.sketch_name, 
         sketch_url: req.body.sketch_url,
         sketch_status: req.body.sketch_status,
+        posted_by:req.body.posted_by
       }
       const options = {new:true}
       const savedSketch= await Sketch.findByIdAndUpdate(id,updatedSketch,options);
@@ -48,5 +57,14 @@ sketchRouter.get('/:id', (req, res) => {
       console.error('Something is wrong', error)
     }
     });
+
+    sketchRouter.delete('/:id', (req, res) => {
+      Sketch
+      .findOne({_id: req.params.id})
+      .remove()
+      .then(sketch => res.json(sketch))
+      .catch(err => console.log(err))
+    })
+
   
   module.exports = sketchRouter;
