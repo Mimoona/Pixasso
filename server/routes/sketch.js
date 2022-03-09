@@ -26,7 +26,7 @@ sketchRouter.get('/:id', (req, res) => {
         sketch_url: req.body.sketch_url
       });
       await newImage.save();
-      res.json(newImage.sketch_url);
+      res.json(newImage);
     } catch (err) {
       console.error('Something went wrong', err);
     }

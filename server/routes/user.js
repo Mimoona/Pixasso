@@ -30,6 +30,7 @@ userRouter.get('/', (req, res) => {
 userRouter.get('/:id', (req, res) => {
   User
   .findOne({_id: req.params.id})
+  .populate("sketch_ids")
   .then(user => res.json(user))
   .catch(err => console.log(err))
 })
